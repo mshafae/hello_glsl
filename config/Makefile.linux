@@ -1,0 +1,13 @@
+#
+# Configuration for Linux
+#
+# $Id: Makefile.freebsd 4759 2014-01-23 07:42:48Z mshafae $
+#
+#
+CC=clang
+CXX=clang++
+#OPENGL_KIT_HOME = ${HOME}/winhomedir/local
+CFLAGS += -g -Wno-deprecated-declarations -std=c++11 -pipe -I./glm
+LDFLAGS += -g -pipe
+LLDLIBS += -lGL -lX11 -lGLU -lglfw3 -lXxf86vm -lpthread -lXrandr -lXcursor -lXinerama -lGLEW -lXi -lfreeimage
+
