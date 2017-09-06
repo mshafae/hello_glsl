@@ -12,7 +12,7 @@
 # This archive was unpacked and the contents copied to ${HOME}/local
 #
 OPENGL_KIT_HOME = ../TitanOpenGLKit/TitanOpenGLKit_osx
-CFLAGS += -g -Wall -pedantic -pipe -I ${OPENGL_KIT_HOME}/include
-LDFLAGS += -g -Wall -pipe -L ${OPENGL_KIT_HOME}/lib
+CFLAGS += -g -Wall -pedantic -pipe -std=c++11 -I ${OPENGL_KIT_HOME}/include
+LDFLAGS += -g -Wall -pipe -std=c++11 -L ${OPENGL_KIT_HOME}/lib
 LLDLIBS += -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -framework QuartzCore -lGLEW -lfreeimage
 
