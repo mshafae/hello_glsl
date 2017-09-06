@@ -32,7 +32,7 @@ public:
   SpinningLight( ){ }
   SpinningLight(glm::vec3& color, glm::vec3& position, glm::vec3& center) :
     _rotationDelta(0.05), _color(color), _position(position), _center(center), _savedColor(color), _isOn(true){
-      glm::vec3 random_vector = glm::normalize(glm::sphericalRand(1.0));
+      glm::vec3 random_vector = glm::sphericalRand(1.0);
       glm::vec3 d = direction( );
       _tangent = glm::cross(d, random_vector);
     }
@@ -45,7 +45,7 @@ public:
     glm::vec3 _up = glm::normalize(_tangent);
     glm::vec3 s = glm::normalize(glm::cross(f, _up));
     glm::vec3 u = glm::cross(s, f);
-    glm::mat3 m = glm::rotate(-_rotationDelta, s);
+    glm::mat3 m = glm::rotate(_rotationDelta, s);
     _tangent = m * u;
     _position = m * _position;
   }
@@ -74,7 +74,7 @@ public:
     glm::vec3 _up = glm::normalize(_tangent);
     glm::vec3 s = glm::normalize(glm::cross(f, _up));
     glm::vec3 u = glm::cross(s, f);
-    glm::mat3 m = glm::rotate(-_rotationDelta, u);
+    glm::mat3 m = glm::rotate(_rotationDelta, u);
     _position = m * _position;
   }
 
@@ -91,6 +91,10 @@ public:
       _color = glm::vec3(0.0, 0.0, 0.0);
     }
   }
+
+  void draw( ){
+
+  }
 private:
   float _rotationDelta;
   glm::vec3 _color;
@@ -104,6 +108,10 @@ private:
     glm::vec3 d;
     d = glm::normalize(_center - _position);
     return d;
+  }
+
+  void debug( ){
+    std::cerr << "position " << glm::to_string(_position) << "(" << glm::length(_position) << ")" << "\ncenter " << glm::to_string(_center) << "\ntangent " << glm::to_string(_tangent) << "(" << glm::length(_tangent) << ")" << std::endl << std::endl;
   }
 };
 
@@ -286,6 +294,7 @@ public:
     shaderProgram_A.activate( );
     activateUniforms_A(_light0, _light1);
     _glutSolidTeapot(1.0);
+    light0.draw( );
     
     if(isKeyPressed('Q')){
       end( );      
