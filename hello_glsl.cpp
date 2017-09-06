@@ -31,7 +31,7 @@ class SpinningLight{
 public:
   SpinningLight( ){ }
   SpinningLight(glm::vec3& color, glm::vec3& position, glm::vec3& center) :
-    _color(color), _savedColor(color), _position(position), _center(center), _rotationDelta(0.05), _isOn(true){
+    _rotationDelta(0.05), _color(color), _position(position), _center(center), _savedColor(color), _isOn(true){
       glm::vec3 random_vector = glm::normalize(glm::sphericalRand(1.0));
       glm::vec3 d = direction( );
       _tangent = glm::cross(d, random_vector);
